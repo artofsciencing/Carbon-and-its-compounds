@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carbon & Its Compounds — Exam Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --panel: #12121a;
+    --border: #2a2a3a;
+    --accent: #00e5ff;
+    --accent2: #ff6b35;
+    --accent3: #a8ff3e;
+    --text: #e8e8f0;
+    --muted: #6a6a8a;
+    --correct: #a8ff3e;
+    --wrong: #ff4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .atom-ring {
+    width: 80px; height: 80px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    position: relative;
+    animation: spin 8s linear infinite;
+  }
+  .atom-ring::before {
+    content: 'C';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--accent);
+    animation: spin-reverse 8s linear infinite;
+  }
+  .atom-ring::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: -6px; left: 50%; transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes spin-reverse { to { transform: rotate(-360deg); } }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent) 0%, #fff 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 4px;
+    height: 4px;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transition: width 0.5s ease;
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  /* Nav tabs */
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.5rem;
+  }
+
+  .tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  .tab.active {
+    background: var(--accent);
+    color: #000;
+  }
+
+  /* Section */
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Cards */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: rgba(0,229,255,0.3); }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card-title .icon {
+    width: 28px; height: 28px;
+    background: rgba(0,229,255,0.15);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  p, li { line-height: 1.7; color: var(--text); font-size: 0.95rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 0.4rem; }
+
+  /* Molecule visualizer */
+  .molecule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .molecule-card {
+    background: #0d0d16;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .molecule-card:hover {
+    border-color: var(--accent2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(255,107,53,0.2);
+  }
+  .molecule-card.selected {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(0,229,255,0.25);
+  }
+
+  .molecule-svg {
+    width: 100%; height: 80px;
+    margin-bottom: 0.5rem;
+  }
+
+  .molecule-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent3);
+    font-weight: 700;
+  }
+  .molecule-formula {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* Info panel for molecule */
+  .molecule-info {
+    background: #0d0d16;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .molecule-info.visible { display: block; }
+  .molecule-info h3 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Space Mono', monospace;
+  }
+  .props-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+  .prop {
+    background: rgba(0,229,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem;
+  }
+  .prop-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+    font-family: 'Space Mono', monospace;
+  }
+  .prop-value { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+
+  /* Reactions */
+  .reaction-box {
+    background: #0d0d16;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin: 0.8rem 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+  }
+  .reaction-box .label {
+    font-size: 0.65rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+    font-family: 'Syne', sans-serif;
+  }
+  .reaction-eq {
+    color: var(--accent3);
+    font-size: 1rem;
+  }
+  .reaction-box .condition {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* Quiz */
+  .quiz-q {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: none;
+  }
+  .quiz-q.active { display: block; }
+
+  .question-text {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .q-counter {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .option-btn {
+    background: #0d0d16;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: rgba(0,229,255,0.08);
+  }
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: rgba(168,255,62,0.1);
+    color: var(--correct);
+  }
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: rgba(255,68,68,0.1);
+    color: var(--wrong);
+  }
+
+  .feedback {
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: none;
+    line-height: 1.5;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct-fb {
+    background: rgba(168,255,62,0.1);
+    border: 1px solid rgba(168,255,62,0.3);
+    color: var(--correct);
+  }
+  .feedback.wrong-fb {
+    background: rgba(255,68,68,0.1);
+    border: 1px solid rgba(255,68,68,0.3);
+    color: #ff8888;
+  }
+
+  .next-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: none;
+    transition: opacity 0.2s;
+  }
+  .next-btn:hover { opacity: 0.85; }
+  .next-btn.visible { display: inline-block; }
+
+  /* Score */
+  .score-display {
+    text-align: center;
+    padding: 2rem;
+    display: none;
+  }
+  .score-display.visible { display: block; }
+  .score-number {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .score-msg { color: var(--muted); margin-top: 0.5rem; font-size: 1rem; }
+  .restart-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .restart-btn:hover { background: var(--accent); color: #000; }
+
+  /* Flashcards */
+  .flashcard-wrap {
+    perspective: 1000px;
+    margin: 1rem 0 2rem;
+    cursor: pointer;
+  }
+  .flashcard {
+    width: 100%; min-height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    border-radius: 16px;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+
+  .fc-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    min-height: 200px;
+  }
+
+  .fc-front {
+    background: var(--panel);
+    border: 1px solid var(--border);
+  }
+  .fc-back {
+    background: linear-gradient(135deg, #0d1a2a, #0d1a14);
+    border: 1px solid var(--accent);
+    transform: rotateY(180deg);
+  }
+
+  .fc-hint {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .fc-question {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .fc-answer {
+    font-size: 0.95rem;
+    color: var(--accent3);
+    line-height: 1.6;
+  }
+
+  .fc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .fc-nav-btn {
+    padding: 0.5rem 1.2rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .fc-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .fc-counter { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); }
+
+  /* Highlight */
+  .hl-cyan { color: var(--accent); font-weight: 600; }
+  .hl-orange { color: var(--accent2); font-weight: 600; }
+  .hl-green { color: var(--accent3); font-weight: 600; }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+  }
+  .badge-exam { background: rgba(255,107,53,0.2); color: var(--accent2); border: 1px solid rgba(255,107,53,0.4); }
+  .badge-important { background: rgba(168,255,62,0.15); color: var(--accent3); border: 1px solid rgba(168,255,62,0.3); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.8rem; }
+  th {
+    background: rgba(0,229,255,0.1);
+    color: var(--accent);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(0,229,255,0.03); }
+
+  /* Audio visualizer (decorative) */
+  .visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 30px;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+  .viz-bar {
+    width: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.6;
+    animation: vizAnim var(--d) ease-in-out infinite alternate;
+  }
+  @keyframes vizAnim { from { height: 4px; opacity: 0.3; } to { height: var(--h); opacity: 0.8; } }
+
+  /* Sticky exam tips */
+  .exam-tips {
+    background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(255,107,53,0.02));
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+  .exam-tips-title {
+    color: var(--accent2);
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 600px) {
+    .molecule-grid { grid-template-columns: repeat(2, 1fr); }
+    .tab { font-size: 0.75rem; padding: 0.5rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="atom-ring"></div>
+    <h1>Carbon & Its Compounds</h1>
+    <p class="subtitle">Interactive Exam Prep — 2 days to go 🔥</p>
+    <div class="visualizer" id="viz"></div>
+  </header>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width: 20%"></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" onclick="showSection('concepts', this)">📘 Concepts</button>
+    <button class="tab" onclick="showSection('molecules', this)">⚛️ Molecules</button>
+    <button class="tab" onclick="showSection('reactions', this)">⚗️ Reactions</button>
+    <button class="tab" onclick="showSection('flashcards', this)">🃏 Flashcards</button>
+    <button class="tab" onclick="showSection('quiz', this)">🎯 Quiz</button>
+  </div>
+
+  <!-- CONCEPTS -->
+  <div id="concepts" class="section active">
+
+    <div class="card">
+      <div class="card-title"><div class="icon">⬡</div> Why Carbon is Special</div>
+      <p>Carbon (atomic no. 6) is the backbone of organic chemistry because of two unique properties:</p>
+      <ul style="margin-top:0.8rem">
+        <li><span class="hl-cyan">Catenation</span> — Carbon atoms can bond with each other in long chains, branched chains, and rings — forming an enormous variety of molecules.</li>
+        <li><span class="hl-cyan">Tetravalency</span> — Carbon has <strong>4 valence electrons</strong>, allowing it to form 4 covalent bonds with other atoms (H, O, N, Cl…).</li>
+      </ul>
+      <div class="exam-tips" style="margin-top:1rem">
+        <div class="exam-tips-title">⚡ Exam Tip</div>
+        <p>You WILL be asked why carbon forms such a large number of compounds. Answer: <em>catenation + tetravalency</em>. Mention both!</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔗</div> Hydrocarbons — The Basics <span class="badge badge-exam">High Yield</span></div>
+      <p>Hydrocarbons contain only <span class="hl-cyan">carbon and hydrogen</span>. They are split into two main families:</p>
+      <table>
+        <tr><th>Feature</th><th>Saturated (Alkanes)</th><th>Unsaturated (Alkenes)</th></tr>
+        <tr><td>Bond type</td><td>Single C–C bonds only</td><td>At least one C=C double bond</td></tr>
+        <tr><td>General formula</td><td>CₙH₂ₙ₊₂</td><td>CₙH₂ₙ</td></tr>
+        <tr><td>Bromine water test</td><td>No decolorisation (stays orange)</td><td>Decolourises bromine water (turns colourless)</td></tr>
+        <tr><td>Examples</td><td>Methane, Ethane, Propane</td><td>Ethene, Propene</td></tr>
+        <tr><td>Source</td><td>Natural gas, petroleum</td><td>Cracking of alkanes</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🧪</div> Functional Groups <span class="badge badge-important">Key!</span></div>
+      <p>A functional group is an atom or group of atoms that gives an organic molecule its characteristic properties.</p>
+      <table style="margin-top:0.8rem">
+        <tr><th>Compound</th><th>Functional Group</th><th>Suffix</th><th>Example</th></tr>
+        <tr><td>Alkanol (Alcohol)</td><td>–OH</td><td>-ol</td><td>Ethanol (C₂H₅OH)</td></tr>
+        <tr><td>Carboxylic Acid</td><td>–COOH</td><td>-anoic acid</td><td>Ethanoic acid (CH₃COOH)</td></tr>
+        <tr><td>Ester</td><td>–COO–</td><td>-anoate</td><td>Ethyl ethanoate</td></tr>
+        <tr><td>Aldehyde</td><td>–CHO</td><td>-al</td><td>Ethanal</td></tr>
+        <tr><td>Ketone</td><td>C=O</td><td>-one</td><td>Propanone</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔁</div> Homologous Series</div>
+      <p>A <span class="hl-cyan">homologous series</span> is a group of organic compounds that share the same functional group, differ by a CH₂ unit, and show a gradual change in physical properties.</p>
+      <ul style="margin-top:0.8rem">
+        <li>Same general formula</li>
+        <li>Similar chemical properties</li>
+        <li>Gradually increasing boiling points with chain length</li>
+        <li>Gradual change in physical state: gases → liquids → solids</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🌐</div> Allotropes of Carbon</div>
+      <p>Carbon exists in different structural forms (allotropes) with vastly different properties:</p>
+      <table style="margin-top:0.8rem">
+        <tr><th>Allotrope</th><th>Structure</th><th>Properties</th><th>Uses</th></tr>
+        <tr><td><span class="hl-cyan">Diamond</span></td><td>3D tetrahedral lattice, each C bonded to 4 others</td><td>Hardest natural substance, no free electrons, non-conductor</td><td>Cutting tools, jewellery</td></tr>
+        <tr><td><span class="hl-orange">Graphite</span></td><td>Layers of hexagonal rings, each C bonded to 3, 1 free electron/atom</td><td>Soft, slippery, good conductor of electricity</td><td>Lubricant, electrodes, pencils</td></tr>
+        <tr><td><span class="hl-green">Fullerene (C₆₀)</span></td><td>Soccer-ball shaped molecules (60 carbons)</td><td>Conducts electricity, nano-scale</td><td>Drug delivery, nanotechnology</td></tr>
+      </table>
+      <div class="exam-tips" style="margin-top:1rem">
+        <div class="exam-tips-title">⚡ Exam Tip</div>
+        <p>Diamond vs graphite is a very common question. Remember: graphite conducts electricity because of <em>delocalised electrons</em>; diamond does not because all 4 electrons are used in bonding.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOLECULES -->
+  <div id="molecules" class="section">
+    <div class="card">
+      <div class="card-title"><div class="icon">⚛️</div> Explore Key Molecules</div>
+      <p style="margin-bottom:1rem; color:var(--muted)">Click any molecule to reveal its properties, uses, and exam facts.</p>
+      <div class="molecule-grid" id="moleculeGrid"></div>
+      <div class="molecule-info" id="moleculeInfo"></div>
+    </div>
+  </div>
+
+  <!-- REACTIONS -->
+  <div id="reactions" class="section">
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔥</div> Combustion <span class="badge badge-exam">Exam Fav</span></div>
+      <p>Carbon compounds <span class="hl-orange">burn in oxygen</span> — this is combustion. Complete combustion requires excess oxygen:</p>
+      <div class="reaction-box">
+        <div class="label">Complete Combustion of Methane</div>
+        <div class="reaction-eq">CH₄ + 2O₂ → CO₂ + 2H₂O</div>
+        <div class="condition">Blue flame | Products: CO₂ + H₂O only</div>
+      </div>
+      <div class="reaction-box">
+        <div class="label">Incomplete Combustion</div>
+        <div class="reaction-eq">CH₄ + O₂ → CO + 2H₂O  (limited O₂)</div>
+        <div class="condition">Yellow/sooty flame | Produces toxic CO (carbon monoxide) + soot</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">➕</div> Addition Reactions (Alkenes)</div>
+      <p>Alkenes undergo <span class="hl-cyan">addition reactions</span> across the C=C double bond:</p>
+      <div class="reaction-box">
+        <div class="label">Hydrogenation (making margarine)</div>
+        <div class="reaction-eq">CH₂=CH₂ + H₂ → CH₃–CH₃</div>
+        <div class="condition">Condition: Nickel catalyst, 150–200°C</div>
+      </div>
+      <div class="reaction-box">
+        <div class="label">Halogenation (bromine water test)</div>
+        <div class="reaction-eq">CH₂=CH₂ + Br₂ → CH₂Br–CH₂Br</div>
+        <div class="condition">Brown/orange bromine water → colourless</div>
+      </div>
+      <div class="reaction-box">
+        <div class="label">Hydration (making ethanol)</div>
+        <div class="reaction-eq">CH₂=CH₂ + H₂O → CH₃CH₂OH</div>
+        <div class="condition">Condition: H₃PO₄ catalyst, 300°C, 60 atm</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🔄</div> Substitution Reactions (Alkanes)</div>
+      <p>Alkanes react with halogens in <span class="hl-green">UV light (photochemical) substitution</span>:</p>
+      <div class="reaction-box">
+        <div class="label">Chlorination of Methane</div>
+        <div class="reaction-eq">CH₄ + Cl₂ → CH₃Cl + HCl</div>
+        <div class="condition">Condition: UV light (sunlight)</div>
+      </div>
+      <p style="margin-top:0.8rem; font-size:0.85rem; color:var(--muted)">Alkanes do NOT decolourise bromine water — they are unreactive with it (no UV light).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">🍷</div> Fermentation & Esterification</div>
+      <div class="reaction-box">
+        <div class="label">Fermentation of glucose → Ethanol</div>
+        <div class="reaction-eq">C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂</div>
+        <div class="condition">Condition: Yeast (enzyme zymase), 25–37°C, anaerobic</div>
+      </div>
+      <div class="reaction-box">
+        <div class="label">Esterification (alcohol + acid)</div>
+        <div class="reaction-eq">CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</div>
+        <div class="condition">Catalyst: Conc. H₂SO₄, heat gently. Reversible reaction!</div>
+      </div>
+      <div class="exam-tips">
+        <div class="exam-tips-title">⚡ Exam Tip</div>
+        <p>Esters have <em>fruity smells</em>. The name is: <strong>alkyl alkanoate</strong> — alcohol gives the alkyl part, acid gives the alkanoate part.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="icon">⛓️</div> Polymerisation</div>
+      <p><span class="hl-cyan">Addition polymerisation</span>: many alkene monomers join to form a long-chain polymer with no by-products.</p>
+      <div class="reaction-box">
+        <div class="label">Ethene → Poly(ethene) (polyethylene / LDPE)</div>
+        <div class="reaction-eq">n CH₂=CH₂ → –[CH₂–CH₂]ₙ–</div>
+        <div class="condition">High pressure, catalyst</div>
+      </div>
+      <p style="margin-top:0.8rem"><span class="hl-orange">Condensation polymerisation</span>: monomers join with loss of a small molecule (H₂O or HCl).</p>
+      <div class="reaction-box">
+        <div class="label">Example: Nylon (polyamide)</div>
+        <div class="reaction-eq">Diamine + Dicarboxylic acid → Nylon + H₂O</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div id="flashcards" class="section">
+    <div class="card">
+      <div class="card-title"><div class="icon">🃏</div> Quick-Fire Flashcards</div>
+      <p style="color:var(--muted); margin-bottom:1.5rem; font-size:0.85rem">Click the card to reveal the answer. Use the arrows to navigate.</p>
+
+      <div class="flashcard-wrap" onclick="flipCard()">
+        <div class="flashcard" id="flashcard">
+          <div class="fc-face fc-front">
+            <div class="fc-hint">Tap to flip</div>
+            <div class="fc-question" id="fc-q">Loading...</div>
+          </div>
+          <div class="fc-face fc-back">
+            <div class="fc-hint">Answer</div>
+            <div class="fc-answer" id="fc-a">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-nav">
+        <button class="fc-nav-btn" onclick="prevCard()">← Prev</button>
+        <span class="fc-counter" id="fc-counter">1 / 12</span>
+        <button class="fc-nav-btn" onclick="nextCard()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="section">
+    <div class="card">
+      <div class="card-title"><div class="icon">🎯</div> Exam Practice Quiz — 15 Questions</div>
+      <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1.5rem">Choose the correct answer. Detailed explanations provided after each question.</p>
+
+      <div id="quizQuestions"></div>
+      <div class="score-display" id="scoreDisplay">
+        <div class="score-number" id="scoreNum">0/15</div>
+        <div class="score-msg" id="scoreMsg"></div>
+        <button class="restart-btn" onclick="restartQuiz()">↺ Restart Quiz</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// === VISUALIZER ===
+const viz = document.getElementById('viz');
+for (let i = 0; i < 24; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'viz-bar';
+  const h = Math.random() * 22 + 4;
+  const d = (Math.random() * 1.5 + 0.5).toFixed(2);
+  bar.style.cssText = `--h:${h}px; --d:${d}s; height:${h}px;`;
+  viz.appendChild(bar);
+}
+
+// === TABS ===
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const progMap = {concepts:20, molecules:40, reactions:60, flashcards:80, quiz:100};
+  document.getElementById('progressBar').style.width = progMap[id] + '%';
+}
+
+// === MOLECULES DATA ===
+const molecules = [
+  {
+    name: 'Methane', formula: 'CH₄', type: 'Alkane',
+    svg: `<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="40" r="12" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="50" y="45" text-anchor="middle" fill="#00e5ff" font-size="11" font-family="monospace">C</text>
+      <circle cx="20" cy="20" r="8" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="20" y="24" text-anchor="middle" fill="#a8ff3e" font-size="9" font-family="monospace">H</text>
+      <circle cx="80" cy="20" r="8" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="80" y="24" text-anchor="middle" fill="#a8ff3e" font-size="9" font-family="monospace">H</text>
+      <circle cx="20" cy="60" r="8" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="20" y="64" text-anchor="middle" fill="#a8ff3e" font-size="9" font-family="monospace">H</text>
+      <circle cx="80" cy="60" r="8" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="80" y="64" text-anchor="middle" fill="#a8ff3e" font-size="9" font-family="monospace">H</text>
+      <line x1="38" y1="33" x2="28" y2="27" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="62" y1="33" x2="72" y2="27" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="38" y1="48" x2="28" y2="53" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="62" y1="48" x2="72" y2="53" stroke="#a8ff3e" stroke-width="1.5"/>
+    </svg>`,
+    props: { 'State (RTP)': 'Gas', 'Boiling pt': '-161°C', 'Bonds': '4 single C–H', 'Combustion': 'CH₄ + 2O₂ → CO₂ + 2H₂O' },
+    info: 'Simplest alkane. Main component of natural gas. Burns with a blue flame in complete combustion. Used as fuel in cooking and heating. Does NOT decolourise bromine water.'
+  },
+  {
+    name: 'Ethene', formula: 'C₂H₄', type: 'Alkene',
+    svg: `<svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="35" cy="40" r="12" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="35" y="45" text-anchor="middle" fill="#00e5ff" font-size="11" font-family="monospace">C</text>
+      <circle cx="65" cy="40" r="12" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="65" y="45" text-anchor="middle" fill="#00e5ff" font-size="11" font-family="monospace">C</text>
+      <line x1="47" y1="37" x2="53" y2="37" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="47" y1="43" x2="53" y2="43" stroke="#ff6b35" stroke-width="2"/>
+      <circle cx="10" cy="25" r="7" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="10" y="29" text-anchor="middle" fill="#a8ff3e" font-size="8" font-family="monospace">H</text>
+      <circle cx="10" cy="55" r="7" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="10" y="59" text-anchor="middle" fill="#a8ff3e" font-size="8" font-family="monospace">H</text>
+      <circle cx="90" cy="25" r="7" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="90" y="29" text-anchor="middle" fill="#a8ff3e" font-size="8" font-family="monospace">H</text>
+      <circle cx="90" cy="55" r="7" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="90" y="59" text-anchor="middle" fill="#a8ff3e" font-size="8" font-family="monospace">H</text>
+      <line x1="24" y1="35" x2="17" y2="29" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="24" y1="45" x2="17" y2="51" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="76" y1="35" x2="83" y2="29" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="76" y1="45" x2="83" y2="51" stroke="#a8ff3e" stroke-width="1.5"/>
+    </svg>`,
+    props: { 'State (RTP)': 'Gas', 'Bond': 'C=C double bond', 'Test': 'Decolourises Br₂ water', 'Use': 'Monomer for polyethene' },
+    info: 'Simplest alkene. Contains ONE C=C double bond making it unsaturated. Undergoes addition reactions. Used industrially to make poly(ethene). Obtained by cracking alkanes.'
+  },
+  {
+    name: 'Ethanol', formula: 'C₂H₅OH', type: 'Alcohol',
+    svg: `<svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="40" r="11" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="30" y="44" text-anchor="middle" fill="#00e5ff" font-size="10" font-family="monospace">C</text>
+      <circle cx="60" cy="40" r="11" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="60" y="44" text-anchor="middle" fill="#00e5ff" font-size="10" font-family="monospace">C</text>
+      <circle cx="90" cy="40" r="11" fill="#2a0a0a" stroke="#ff6b35" stroke-width="1.5"/>
+      <text x="90" y="44" text-anchor="middle" fill="#ff6b35" font-size="10" font-family="monospace">O</text>
+      <line x1="41" y1="40" x2="49" y2="40" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="71" y1="40" x2="79" y2="40" stroke="#a8ff3e" stroke-width="1.5"/>
+      <circle cx="8" cy="27" r="6" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="8" y="31" text-anchor="middle" fill="#a8ff3e" font-size="7">H</text>
+      <circle cx="8" cy="53" r="6" fill="#1a2a1a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="8" y="57" text-anchor="middle" fill="#a8ff3e" font-size="7">H</text>
+      <line x1="21" y1="35" x2="14" y2="30" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="21" y1="45" x2="14" y2="50" stroke="#a8ff3e" stroke-width="1.5"/>
+    </svg>`,
+    props: { 'State (RTP)': 'Liquid', 'Boiling pt': '78°C', 'Functional grp': '–OH', 'Made by': 'Fermentation / hydration' },
+    info: 'Most common alcohol. Has –OH functional group. Made by fermentation (glucose + yeast) or hydration of ethene. Flammable — burns to give CO₂ + H₂O. Reacts with carboxylic acids to form esters.'
+  },
+  {
+    name: 'Ethanoic Acid', formula: 'CH₃COOH', type: 'Carboxylic Acid',
+    svg: `<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="25" cy="40" r="11" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="25" y="44" text-anchor="middle" fill="#00e5ff" font-size="10" font-family="monospace">C</text>
+      <circle cx="60" cy="40" r="11" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1.5"/>
+      <text x="60" y="44" text-anchor="middle" fill="#00e5ff" font-size="10" font-family="monospace">C</text>
+      <circle cx="90" cy="25" r="11" fill="#2a0a0a" stroke="#ff6b35" stroke-width="1.5"/>
+      <text x="90" y="29" text-anchor="middle" fill="#ff6b35" font-size="10" font-family="monospace">O</text>
+      <circle cx="90" cy="56" r="11" fill="#2a0a0a" stroke="#ff6b35" stroke-width="1.5"/>
+      <text x="90" y="60" text-anchor="middle" fill="#ff6b35" font-size="10" font-family="monospace">OH</text>
+      <line x1="36" y1="40" x2="49" y2="40" stroke="#a8ff3e" stroke-width="1.5"/>
+      <line x1="70" y1="35" x2="80" y2="29" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="72" y1="32" x2="82" y2="26" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="70" y1="45" x2="80" y2="51" stroke="#a8ff3e" stroke-width="1.5"/>
+    </svg>`,
+    props: { 'State (RTP)': 'Liquid', 'Boiling pt': '118°C', 'Functional grp': '–COOH', 'In vinegar': '~5% solution' },
+    info: 'A weak carboxylic acid — partly ionises in water. The active ingredient in vinegar. Reacts with alcohols to form esters, with carbonates to release CO₂, with metals to form hydrogen gas.'
+  },
+  {
+    name: 'Glucose', formula: 'C₆H₁₂O₆', type: 'Sugar',
+    svg: `<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="60,10 95,30 95,60 60,75 25,60 25,30" fill="none" stroke="#a8ff3e" stroke-width="1.5"/>
+      <circle cx="60" cy="10" r="7" fill="#1a2a0a" stroke="#a8ff3e" stroke-width="1"/>
+      <text x="60" y="14" text-anchor="middle" fill="#a8ff3e" font-size="7">O</text>
+      <circle cx="95" cy="30" r="7" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1"/>
+      <text x="95" y="34" text-anchor="middle" fill="#00e5ff" font-size="7">C</text>
+      <circle cx="95" cy="60" r="7" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1"/>
+      <text x="95" y="64" text-anchor="middle" fill="#00e5ff" font-size="7">C</text>
+      <circle cx="60" cy="75" r="7" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1"/>
+      <text x="60" y="79" text-anchor="middle" fill="#00e5ff" font-size="7">C</text>
+      <circle cx="25" cy="60" r="7" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1"/>
+      <text x="25" y="64" text-anchor="middle" fill="#00e5ff" font-size="7">C</text>
+      <circle cx="25" cy="30" r="7" fill="#0a3a4a" stroke="#00e5ff" stroke-width="1"/>
+      <text x="25" y="34" text-anchor="middle" fill="#00e5ff" font-size="7">C</text>
+    </svg>`,
+    props: { 'Type': 'Monosaccharide', 'Metabolised by': 'Yeast (fermentation)', 'Products': 'Ethanol + CO₂', 'Also': 'Respiration substrate' },
+    info: 'A simple sugar with formula C₆H₁₂O₆. Fermented by yeast under anaerobic conditions to produce ethanol and CO₂. This is the basis of making alcoholic drinks and biofuels.'
+  },
+  {
+    name: 'CO₂', formula: 'Carbon Dioxide', type: 'Oxide',
+    svg: `<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="40" r="16" fill="#2a0a0a" stroke="#ff6b35" stroke-width="2"/>
+      <text x="20" y="45" text-anchor="middle" fill="#ff6b35" font-size="13" font-family="monospace">O</text>
+      <circle cx="60" cy="40" r="16" fill="#0a2a3a" stroke="#00e5ff" stroke-width="2"/>
+      <text x="60" y="45" text-anchor="middle" fill="#00e5ff" font-size="13" font-family="monospace">C</text>
+      <circle cx="100" cy="40" r="16" fill="#2a0a0a" stroke="#ff6b35" stroke-width="2"/>
+      <text x="100" y="45" text-anchor="middle" fill="#ff6b35" font-size="13" font-family="monospace">O</text>
+      <line x1="36" y1="37" x2="44" y2="37" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="36" y1="43" x2="44" y2="43" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="76" y1="37" x2="84" y2="37" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="76" y1="43" x2="84" y2="43" stroke="#ff6b35" stroke-width="2"/>
+    </svg>`,
+    props: { 'State (RTP)': 'Gas', 'Bonds': 'Two C=O double bonds', 'Greenhouse gas': 'Yes', 'From': 'Combustion, respiration' },
+    info: 'Product of complete combustion of carbon compounds. Linear molecule with two double bonds. A greenhouse gas contributing to global warming. Turns limewater milky — this is the standard test for CO₂.'
+  },
+];
+
+// Render molecule cards
+const grid = document.getElementById('moleculeGrid');
+molecules.forEach((m, i) => {
+  const card = document.createElement('div');
+  card.className = 'molecule-card';
+  card.innerHTML = `<svg class="molecule-svg">${m.svg.replace(/<svg[^>]*>/, '').replace('</svg>', '')}</svg>
+    <div class="molecule-name">${m.name}</div>
+    <div class="molecule-formula">${m.formula} · ${m.type}</div>`;
+  card.onclick = () => selectMolecule(i, card);
+  grid.appendChild(card);
+});
+
+function selectMolecule(i, card) {
+  document.querySelectorAll('.molecule-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const m = molecules[i];
+  const info = document.getElementById('moleculeInfo');
+  const propsHtml = Object.entries(m.props).map(([k,v]) => `
+    <div class="prop"><div class="prop-label">${k}</div><div class="prop-value">${v}</div></div>
+  `).join('');
+  info.innerHTML = `
+    <h3>${m.name} (${m.formula})</h3>
+    <p style="font-size:0.9rem; line-height:1.6; margin-bottom:0.8rem">${m.info}</p>
+    <div class="props-grid">${propsHtml}</div>
+  `;
+  info.classList.add('visible');
+}
+
+// === FLASHCARDS ===
+const cards = [
+  { q: 'What is catenation?', a: 'The ability of carbon atoms to bond with each other to form long chains, branched chains, and rings. This gives rise to millions of carbon compounds.' },
+  { q: 'What is the general formula for alkanes?', a: 'CₙH₂ₙ₊₂  (e.g. methane CH₄, ethane C₂H₆, propane C₃H₈)' },
+  { q: 'What is the general formula for alkenes?', a: 'CₙH₂ₙ  (e.g. ethene C₂H₄, propene C₃H₆)' },
+  { q: 'How do you test for an alkene?', a: 'Add bromine water. An alkene DECOLOURISES bromine water (orange → colourless). An alkane does NOT.' },
+  { q: 'Why does graphite conduct electricity but diamond does not?', a: 'Graphite has one delocalised (free) electron per carbon atom that can move and carry charge. Diamond uses all 4 electrons in covalent bonding — no free electrons.' },
+  { q: 'What is the functional group of an alcohol? Give an example.', a: 'The –OH (hydroxyl) group. Example: Ethanol, C₂H₅OH' },
+  { q: 'What is esterification? Write conditions.', a: 'Reaction of an alcohol with a carboxylic acid to form an ester + water. Conditions: concentrated H₂SO₄ catalyst, gentle heat. It is a reversible reaction.' },
+  { q: 'What are the conditions for fermentation?', a: 'Glucose + yeast (enzyme zymase), anaerobic conditions, temperature ~25–37°C. Products: ethanol + CO₂' },
+  { q: 'What is the difference between complete and incomplete combustion?', a: 'Complete (excess O₂): gives CO₂ + H₂O, blue flame. Incomplete (limited O₂): gives CO (toxic) + soot + H₂O, yellow/sooty flame.' },
+  { q: 'What is addition polymerisation? Give an example.', a: 'Many alkene monomers join via their C=C bonds to form a polymer with NO by-products. Example: ethene → poly(ethene)' },
+  { q: 'Name three allotropes of carbon and one use each.', a: 'Diamond → cutting tools | Graphite → lubricant/electrodes | Fullerene (C₆₀) → drug delivery/nanotechnology' },
+  { q: 'What is a homologous series?', a: 'A group of organic compounds with the same functional group and general formula, differing by CH₂, with gradually changing physical properties.' },
+];
+
+let fcIndex = 0;
+
+function updateCard() {
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  setTimeout(() => {
+    document.getElementById('fc-q').textContent = cards[fcIndex].q;
+    document.getElementById('fc-a').textContent = cards[fcIndex].a;
+    document.getElementById('fc-counter').textContent = `${fcIndex+1} / ${cards.length}`;
+  }, 200);
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+function nextCard() { fcIndex = (fcIndex + 1) % cards.length; updateCard(); }
+function prevCard() { fcIndex = (fcIndex - 1 + cards.length) % cards.length; updateCard(); }
+updateCard();
+
+// === QUIZ ===
+const questions = [
+  { q: 'Which property of carbon allows it to form bonds with other carbon atoms in chains and rings?', opts: ['Tetravalency', 'Catenation', 'Ionisation', 'Electronegativity'], ans: 1, exp: 'Catenation is the ability of carbon to bond with itself. Tetravalency refers to its 4 valence electrons.' },
+  { q: 'What is the general formula for alkenes?', opts: ['CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ', 'CₙHₙ'], ans: 2, exp: 'Alkenes have one C=C double bond, reducing 2 H atoms compared to alkanes (CₙH₂ₙ₊₂).' },
+  { q: 'Bromine water remains orange when added to hexane. What does this show?', opts: ['Hexane is an alkene', 'Hexane is saturated (no C=C bonds)', 'Hexane is acidic', 'Hexane reacts with bromine in the dark'], ans: 1, exp: 'Alkanes are saturated and cannot undergo addition reactions with bromine water. Only alkenes decolourise it.' },
+  { q: 'What are the products of COMPLETE combustion of ethanol (C₂H₅OH)?', opts: ['CO + H₂O', 'CO₂ + H₂O', 'C + H₂O', 'CO₂ + H₂'], ans: 1, exp: 'Complete combustion with excess oxygen gives only CO₂ and H₂O.' },
+  { q: 'Which allotrope of carbon is used as a lubricant?', opts: ['Diamond', 'Fullerene', 'Graphite', 'Activated carbon'], ans: 2, exp: 'Graphite has layers that can slide over each other (weak van der Waals forces between layers), making it an excellent lubricant.' },
+  { q: 'What conditions are required for the fermentation of glucose to ethanol?', opts: ['Acid catalyst + high temp', 'Yeast, anaerobic, ~30°C', 'H₂SO₄ catalyst + ethene', 'Oxygen + UV light'], ans: 1, exp: 'Fermentation: C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂. Requires yeast (enzyme zymase), no oxygen (anaerobic), ~25-37°C.' },
+  { q: 'In esterification, which catalyst is typically used?', opts: ['NaOH', 'Dilute HCl', 'Concentrated H₂SO₄', 'Nickel'], ans: 2, exp: 'Concentrated sulfuric acid acts as a catalyst in esterification (alcohol + carboxylic acid ⇌ ester + water).' },
+  { q: 'What is the functional group of a carboxylic acid?', opts: ['–OH', '–COOH', '–CHO', '–COO–'], ans: 1, exp: '–COOH (carboxyl group) is the functional group. –OH is alcohol, –CHO is aldehyde, –COO– is ester.' },
+  { q: 'Which test distinguishes diamond from graphite electrically?', opts: ['Diamond conducts; graphite does not', 'Graphite conducts; diamond does not', 'Both conduct equally', 'Neither conducts'], ans: 1, exp: 'Graphite has one delocalised electron per carbon — these carry current. Diamond uses all 4 electrons in bonding, so it cannot conduct.' },
+  { q: 'What type of reaction do alkenes undergo with hydrogen (H₂)?', opts: ['Substitution', 'Combustion', 'Addition', 'Fermentation'], ans: 2, exp: 'Alkenes undergo ADDITION reactions across the C=C double bond. Ethene + H₂ → ethane (with Ni catalyst at 150°C).' },
+  { q: 'Nylon is an example of which type of polymer?', opts: ['Addition polymer', 'Condensation polymer', 'Natural polymer', 'Cross-linked polymer'], ans: 1, exp: 'Nylon is a polyamide formed by condensation polymerisation of a diamine and a dicarboxylic acid, releasing water (H₂O) as a by-product.' },
+  { q: 'Which organic compound is the active ingredient in vinegar?', opts: ['Ethanol', 'Ethyl ethanoate', 'Ethanoic acid', 'Methanal'], ans: 2, exp: 'Ethanoic acid (CH₃COOH, ~5% solution) is the acid in vinegar. It is a weak carboxylic acid.' },
+  { q: 'Ethene is obtained industrially by which process?', opts: ['Hydration of ethane', 'Cracking of long-chain alkanes', 'Fermentation of glucose', 'Combustion of methane'], ans: 1, exp: 'Thermal or catalytic cracking breaks large alkane molecules into smaller alkenes (like ethene) + shorter alkanes.' },
+  { q: 'The formula C₃H₈ belongs to which homologous series?', opts: ['Alkenes', 'Alkynes', 'Alkanes', 'Alcohols'], ans: 2, exp: 'C₃H₈ = propane. Fits CₙH₂ₙ₊₂ with n=3. This is the alkane series.' },
+  { q: 'What colour change occurs when CO₂ is passed through limewater?', opts: ['Yellow to orange', 'Colourless to milky white', 'Blue to red', 'Pink to colourless'], ans: 1, exp: 'CO₂ + Ca(OH)₂ → CaCO₃ + H₂O. The insoluble CaCO₃ (calcium carbonate) turns limewater milky/white.' },
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = [];
+
+function buildQuiz() {
+  const container = document.getElementById('quizQuestions');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q' + (i === 0 ? ' active' : '');
+    div.id = `q${i}`;
+    const optsHtml = q.opts.map((o, j) => `<button class="option-btn" onclick="selectAnswer(${i},${j})">${o}</button>`).join('');
+    div.innerHTML = `
+      <div class="q-counter">Question ${i+1} of ${questions.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${optsHtml}</div>
+      <div class="feedback" id="fb${i}"></div>
+      <button class="next-btn" id="next${i}" onclick="goNext(${i})">${i < questions.length-1 ? 'Next Question →' : 'See Results'}</button>
+    `;
+    container.appendChild(div);
+  });
+  answered = new Array(questions.length).fill(false);
+  currentQ = 0; score = 0;
+}
+
+function selectAnswer(qi, optIdx) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const q = questions[qi];
+  const btns = document.querySelectorAll(`#q${qi} .option-btn`);
+  btns.forEach((b, j) => {
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === optIdx) b.classList.add('wrong');
+  });
+  const fb = document.getElementById(`fb${qi}`);
+  if (optIdx === q.ans) {
+    score++;
+    fb.className = 'feedback show correct-fb';
+    fb.innerHTML = '✓ Correct! ' + q.exp;
+  } else {
+    fb.className = 'feedback show wrong-fb';
+    fb.innerHTML = '✗ Incorrect. ' + q.exp;
+  }
+  document.getElementById(`next${qi}`).classList.add('visible');
+}
+
+function goNext(qi) {
+  document.getElementById(`q${qi}`).classList.remove('active');
+  if (qi < questions.length - 1) {
+    document.getElementById(`q${qi+1}`).classList.add('active');
+  } else {
+    showScore();
+  }
+}
+
+function showScore() {
+  document.getElementById('scoreNum').textContent = `${score}/${questions.length}`;
+  const pct = (score/questions.length)*100;
+  let msg = pct >= 80 ? '🏆 Excellent! You\'re exam-ready!' : pct >= 60 ? '👍 Good — review the ones you missed!' : '📚 Keep practising — revise the concepts section!';
+  document.getElementById('scoreMsg').textContent = msg;
+  document.getElementById('scoreDisplay').classList.add('visible');
+}
+
+function restartQuiz() {
+  document.getElementById('scoreDisplay').classList.remove('visible');
+  buildQuiz();
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
